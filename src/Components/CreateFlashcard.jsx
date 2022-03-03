@@ -46,7 +46,6 @@ const CreateFlashcard = () => {
       method: 'PUT',
       headers: {
         'Content-Type': 'Application/JSON',
-        // "Access-Control-Allow-Origin" : "*",
       },
       body: JSON.stringify({
         front: changeFront,
@@ -93,33 +92,30 @@ const CreateFlashcard = () => {
 
   return (
     <div className='cfc'>
-      <div className='one'>
-        <h1>Language Bank</h1>
+      <div className='title'>
+        <h1>Flashbank</h1>
       </div>
 
-      <div className='two'>
+      <div className='addEntry'>
         <h2>Add Words/Terms</h2>
-        <input placeholder='Enter your Word/Term here...' value={front} onChange={e => setFront(e.target.value)}></input> <br></br>
-        <input placeholder='Translation' value={definition} onChange={e => setDefinition(e.target.value)}></input> <br></br>
-        <button onClick={saveCard}>Create</button><br></br><br></br>
+        <input placeholder='Enter your Word/Term here...' value={front} onChange={e => setFront(e.target.value)}></input>
+        <input placeholder='Translation' value={definition} onChange={e => setDefinition(e.target.value)}></input>
+        <button onClick={saveCard}>Create</button>
       </div>
         
 
-      <div className='three'>
+      <div className='updateEntry'>
         <h2>Update Words/Terms</h2>
-        <input placeholder='Word/Term to be updated...' value={changeFront} onChange={e => setChangeFront(e.target.value)}></input> <br></br>
-        <input placeholder='New Translation' value={newDef} onChange={e => setNewDef(e.target.value)}></input> <br></br>
+        <input placeholder='Word/Term to be updated...' value={changeFront} onChange={e => setChangeFront(e.target.value)}></input>
+        <input placeholder='New Translation' value={newDef} onChange={e => setNewDef(e.target.value)}></input>
         <button onClick={updateCard}>Update</button>
       </div>
         
+      <div className='cardsDisplay'>{cardsArr}</div>
 
-      <br></br> <br></br>
-      <div className='five'>{cardsArr} </div>
-      <br></br> <br></br>
-
-      <div className='four'>
+      <div className='deleteEntry'>
         <h2>Delete Words/Terms</h2>
-        <input placeholder='Word/Term to be deleted...' value={deleteFront} onChange={e => setDeleteFront(e.target.value)}></input> <br></br>
+        <input placeholder='Word/Term to be deleted...' value={deleteFront} onChange={e => setDeleteFront(e.target.value)}></input>
         <button onClick={deleteCard}>Delete</button>
       </div>
         

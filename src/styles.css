@@ -1,54 +1,69 @@
 div {
-    background-color: rgb(221, 212, 235);
-    font-family: 'Raleway', sans-serif;
-  }
+  background-color: rgb(221, 212, 235);
+  font-family: 'Raleway', sans-serif;
+}
   
-  input {
-    height: 20px;
-    width: 20%;
-    font-family: 'Raleway', sans-serif;
-  }
+input {
+  height: 20px;
+  width: 20%;
+  font-family: 'Raleway', sans-serif;
+  display: block
+}
   
-  button {
-    height: 25px;
-    width: 150px;
-    font-family: 'Raleway', sans-serif;
-  }
+button {
+  height: 25px;
+  width: 150px;
+  font-family: 'Raleway', sans-serif;
+}
   
-  .singleCard {
-    width: 35%;
-    height: 9em;
-    margin-bottom: 30px;
-    position: relative;
-  }
+#app {
+  margin-left: auto;
+  margin-right: auto;
+}
 
-  .front {
-    transform: perspective(600px) rotateY(0deg);
-  }
+.singleCard {
+  width: 35%;
+  height: 9em;
+  margin-bottom: 30px;
+  position: relative;
+}
 
-  .back {
-    transform: perspective(600px) rotateY(-180deg);
-  }
+.front {
+  transform: perspective(600px) rotateY(0deg);
+}
 
-  .front, .back {
-    border: 2px solid black;
-    width: 100%;
-    height: 140px;
-    overflow: hidden;
-    backface-visibility: hidden;
-    position: absolute;
-    transition: transform 0.8s linear; 
-  }
+.back {
+  transform: perspective(600px) rotateY(-180deg);
+}
 
-  .singleCard.flipped > .front {
-    transform: perspective(600px) rotateY(180deg);
-  }
+.front, .back {
+  border: 2px solid black;
+  width: 100%;
+  height: 140px;
+  overflow: hidden;
+  backface-visibility: hidden;
+  position: absolute;
+  transition: transform 0.8s linear; 
+}
 
-  .singleCard.flipped > .back {
-    transform: perspective(600px) rotateY(0deg);
-  }
+.singleCard.flipped > .front {
+  transform: perspective(600px) rotateY(180deg);
+}
 
-  .text {
-    text-align: center;
-    padding: 6%;
-  }
+.singleCard.flipped > .back {
+  transform: perspective(600px) rotateY(0deg);
+}
+
+.text {
+  text-align: center;
+  padding: 6%;
+}
+
+.cardsDisplay {
+  padding-top: 3%
+}
+
+.cfc {
+  margin-left: auto;
+  margin-right: auto;
+}
