@@ -1,6 +1,14 @@
 import React, { useState } from 'react';
 
-const SingleCard = (info) => {
+interface Info {
+  info: {
+    card_id: number;
+    front: string;
+    definition: string;
+  }
+}
+
+const SingleCard = (info: Info) => {
   const frontOfCard = info.info.front;
   const definitionOfCard = info.info.definition;
 

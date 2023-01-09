@@ -3,7 +3,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: './src/Components/App.jsx',
+  entry: './src/Components/App.tsx',
   output: {
     filename: 'bundle.js',
     path: path.join(__dirname, 'dist'),
@@ -25,6 +25,10 @@ module.exports = {
         }
       },
       {
+        test: /\.tsx?$/,
+        loader: "ts-loader"
+      },
+      {
         test: /\.css$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader'],
       },
@@ -40,7 +44,7 @@ module.exports = {
   },
   resolve: {
     // Enable importing JS / JSX files without specifying their extension
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
   plugins: [
     new HtmlWebpackPlugin({

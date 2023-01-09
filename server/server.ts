@@ -1,11 +1,10 @@
-const path = require('path');
-const express = require('express');
-const cors = require('cors');
+import path from 'path';
+import express, { Application } from 'express';
+import cors from 'cors';
+import apiRouter from './routes/api';
 
-const app = express();
-
-const apiRouter = require('./routes/api');
-const PORT = 3000;
+const app: Application = express();
+const PORT: number = 3000;
 
 app.use(express.json());
 app.use(cors());
@@ -20,4 +19,4 @@ app.listen(PORT, () => {
   console.log(`Server listening on port: ${PORT}...`);
 });
 
-module.exports = app;
+export default app;
