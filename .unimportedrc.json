@@ -1,0 +1,3 @@
+{
+    "ignoreUnimported": ["webpack.config.js", ".eslintrc.js"]
+}

@@ -1,34 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-interface Info {
-  info: {
+export interface SingleCardProps {
     card_id: number;
     front: string;
     definition: string;
-  }
 }
 
-const SingleCard = (info: Info) => {
-  const frontOfCard = info.info.front;
-  const definitionOfCard = info.info.definition;
+const SingleCard = ({
+    front,
+    definition,
+    card_id: cardId,
+}: SingleCardProps) => {
+    const [isFlipped, setIsFlipped] = useState(false);
+    const flipCard = () => {
+        setIsFlipped((flipped) => !flipped);
+    };
 
-  const [isFlipped, setIsFlipped] = useState(false);
-
-  const flipCard = () => {
-    setIsFlipped((flipped) => !flipped);
-  }
-
-  return (
-    <div className={`singleCard ${isFlipped ? 'flipped' : ''}`} onClick={flipCard}>
-      <div className='front'>
-        <h2 className='text'>Word/Term: {frontOfCard}</h2>
-      </div>
-      <div className='back'>
-        <h2 className='text'>Translation: {definitionOfCard}</h2>
-      </div>
-
-    </div>
-  );
-}
+    return (
+        <div
+            className={`singleCard ${isFlipped ? "flipped" : ""}`}
+            onClick={flipCard}
+            id={cardId.toString()}
+        >
+            <div className="front">
+                <h2 className="text">Word/Term: {front}</h2>
+            </div>
+            <div className="back">
+                <h2 className="text">Translation: {definition}</h2>
+            </div>
+        </div>
+    );
+};
 
 export default SingleCard;
