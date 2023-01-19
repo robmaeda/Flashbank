@@ -2,18 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import SingleCard, { SingleCardProps } from "./SingleCard";
 
-interface CreateFlashcardRequest {
-    front: string;
-    definition: string;
-}
-
 const CreateFlashcard = () => {
     const {
         register,
         handleSubmit,
         reset,
         formState: { errors },
-    } = useForm<CreateFlashcardRequest>();
+    } = useForm();
     const {
         register: register2,
         handleSubmit: handleSubmit2,
@@ -112,7 +107,7 @@ const CreateFlashcard = () => {
                 <h1>Flashbank</h1>
             </div>
 
-            <form className="addEntry" onSubmit={() => handleSubmit(saveCard)}>
+            <form className="addEntry" onSubmit={handleSubmit(saveCard)}>
                 <h2>Add Words/Terms</h2>
                 <input
                     placeholder="Enter your Word/Term here..."
@@ -127,36 +122,32 @@ const CreateFlashcard = () => {
                 <input type="submit" />
             </form>
 
-            <form
-                className="updateEntry"
-                onSubmit={() => handleSubmit2(updateCard)}
-            >
+            <form className="updateEntry" onSubmit={handleSubmit2(updateCard)}>
                 <h2>Update Words/Terms</h2>
                 <input
                     placeholder="Word/Term to be updated..."
-                    {...register2("front", { required: true })}
+                    {...register2("updateFront", { required: true })}
                 />
-                {errors2.front != null && <a>Term is required</a>}
+                {errors2.updateFront != null && <a>Term is required</a>}
                 <input
                     placeholder="New Translation"
-                    {...register2("definition", { required: true })}
+                    {...register2("updateDefinition", { required: true })}
                 />
-                {errors2.definition != null && <a>Definition is required</a>}
+                {errors2.updateDefinition != null && (
+                    <a>Definition is required</a>
+                )}
                 <input type="submit" value="Update" />
             </form>
 
             <div className="cardsDisplay">{cardsArr}</div>
 
-            <form
-                className="deleteEntry"
-                onSubmit={() => handleSubmit3(deleteCard)}
-            >
+            <form className="deleteEntry" onSubmit={handleSubmit3(deleteCard)}>
                 <h2>Delete Words/Terms</h2>
                 <input
                     placeholder="Word/Term to be deleted..."
-                    {...register3("front", { required: true })}
+                    {...register3("deleteFront", { required: true })}
                 />
-                {errors3.front != null && <a>Term is required</a>}
+                {errors3.deleteFront != null && <a>Term is required</a>}
                 <input type="submit" value="Delete" />
             </form>
         </div>

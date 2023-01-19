@@ -1,53 +1,62 @@
+import { Request, Response, NextFunction } from "express";
 
-import { Request, Response, NextFunction, RouterOptions } from 'express';
+import { query } from "../models/flashcardModels";
 
-const db = require('../models/flashcardModels');
+interface DatabaseResult {
+    rows: string[];
+}
 
 const flashcardController = {
+    getCards: async (_req: Request, res: Response, next: NextFunction) => {
+        const getAllCards = "SELECT * FROM table_2";
 
-  getCards: async (req: Request, res: Response, next: NextFunction) => {
-    const getAllCards = 'SELECT * FROM table_2';
+        await query(getAllCards).then((dbres: DatabaseResult) => {
+            res.locals.data = dbres.rows;
+        });
+        return next();
+    },
 
-    await db.query(getAllCards).then((dbres: { rows: string; }) => { res.locals.data = dbres.rows; });
-    return next();
-  },
-
-  addCard: async (req: Request, res: Response, next: NextFunction) => {
-    const query = `INSERT INTO table_2 (front, definition)
+    addCard: async (req: Request, res: Response, next: NextFunction) => {
+        const insert = `INSERT INTO table_2 (front, definition)
     VALUES ('${req.body.front}', '${req.body.definition}');`;
 
-    await db.query(query);
+        await query(insert);
 
-    const getAllCards = 'SELECT * FROM table_2';
+        const getAllCards = "SELECT * FROM table_2";
 
-    await db.query(getAllCards).then((dbres: { rows: string; }) => { 
-      res.locals.data = dbres.rows; });
-    return next();
-  },
+        await query(getAllCards).then((dbres: DatabaseResult) => {
+            res.locals.data = dbres.rows;
+        });
+        return next();
+    },
 
-  updateCard: async (req: Request, res: Response, next: NextFunction) => {
-    const query = `UPDATE table_2
+    updateCard: async (req: Request, res: Response, next: NextFunction) => {
+        const update = `UPDATE table_2
     SET definition = '${req.body.definition}'
     WHERE front = '${req.body.front}'`;
 
-    await db.query(query);
+        await query(update);
 
-    const getAllCards = 'SELECT * FROM table_2';
+        const getAllCards = "SELECT * FROM table_2";
 
-    await db.query(getAllCards).then((dbres: { rows: string; }) => { res.locals.data = dbres.rows; });
-    return next();
-  },
+        await query(getAllCards).then((dbres: DatabaseResult) => {
+            res.locals.data = dbres.rows;
+        });
+        return next();
+    },
 
-  deleteCard: async (req: Request, res: Response, next: NextFunction) => {
-    const query = `DELETE FROM table_2 
-    WHERE front ='${req.body.front}'`;
+    deleteCard: async (req: Request, res: Response, next: NextFunction) => {
+        const deleteQuery = `DELETE FROM table_2 WHERE front ='${req.body.front}'`;
 
-    await db.query(query);
+        await query(deleteQuery);
 
-    const getAllCards = 'SELECT * FROM table_2';
+        const getAllCards = "SELECT * FROM table_2";
 
-    await db.query(getAllCards).then((dbres: { rows: string; }) => { res.locals.data = dbres.rows; });
-    return next();
-  }
-}
+        await query(getAllCards).then((dbres: DatabaseResult) => {
+            res.locals.data = dbres.rows;
+        });
+        return next();
+    },
+};
+
 export default flashcardController;
