@@ -1,7 +1,6 @@
 import { Pool } from "pg";
 
-const PG_URI =
-    "postgres://drvoztxe:wljDzynNrwYJHBf4tAGyZF_qFEh6j7gG@kashin.db.elephantsql.com/drvoztxe";
+const PG_URI = "postgres://";
 
 const pool = new Pool({
     connectionString: PG_URI,
