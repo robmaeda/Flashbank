@@ -1,10 +1,5 @@
 import React, { useState } from "react";
-
-export interface SingleCardProps {
-    card_id: number;
-    front: string;
-    definition: string;
-}
+import { SingleCardProps } from "../util";
 
 const SingleCard = ({
     front,
@@ -23,10 +18,10 @@ const SingleCard = ({
             id={cardId.toString()}
         >
             <div className="front">
-                <h2 className="text">Word/Term: {front}</h2>
+                <h2 className="text">{front}</h2>
             </div>
             <div className="back">
-                <h2 className="text">Translation: {definition}</h2>
+                <h2 className="text">{definition}</h2>
             </div>
         </div>
     );

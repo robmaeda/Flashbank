@@ -18,7 +18,7 @@ const flashcardController = {
 
     addCard: async (req: Request, res: Response, next: NextFunction) => {
         const insert = `INSERT INTO table_2 (front, definition)
-    VALUES ('${req.body.front}', '${req.body.definition}');`;
+        VALUES ('${req.body.front}', '${req.body.definition}');`;
 
         await query(insert);
 
@@ -32,8 +32,8 @@ const flashcardController = {
 
     updateCard: async (req: Request, res: Response, next: NextFunction) => {
         const update = `UPDATE table_2
-    SET definition = '${req.body.definition}'
-    WHERE front = '${req.body.front}'`;
+        SET definition = '${req.body.definition}'
+        WHERE front = '${req.body.front}'`;
 
         await query(update);
 
@@ -46,7 +46,7 @@ const flashcardController = {
     },
 
     deleteCard: async (req: Request, res: Response, next: NextFunction) => {
-        const deleteQuery = `DELETE FROM table_2 WHERE front ='${req.body.front}'`;
+        const deleteQuery = `DELETE FROM table_2 WHERE card_id ='${req.body.front}'`;
 
         await query(deleteQuery);
 
