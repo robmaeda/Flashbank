@@ -21,10 +21,13 @@ const ListCard = ({
     } = useForm();
 
     const updateCard = (data: Record<string, string>) => {
-        FlashcardService.updateCard(data.front, data.definition).then(
-            (response) => setAllCards(response.data)
-        );
+        FlashcardService.updateCard(
+            cardId.toString(),
+            data.updateFront,
+            data.updateDefinition
+        ).then((response) => setAllCards(response.data));
         reset();
+        setShowEdit(false);
     };
 
     const deleteCard = (id: string) => {

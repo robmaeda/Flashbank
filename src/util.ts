@@ -12,12 +12,13 @@ export interface CardsProps {
 export const FlashcardService = {
     getCards: () => axios.get("http://localhost:3000/api/"),
     saveCard: (front: string, definition: string) =>
-        axios.post("api/card/", {
+        axios.post("http://localhost:3000/api/card", {
             front,
             definition,
         }),
-    updateCard: (front: string, definition: string) =>
-        axios.put("api/card/", {
+    updateCard: (id: string, front: string, definition: string) =>
+        axios.put("http://localhost:3000/api/card", {
+            id,
             front,
             definition,
         }),

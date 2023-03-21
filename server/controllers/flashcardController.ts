@@ -32,8 +32,8 @@ const flashcardController = {
 
     updateCard: async (req: Request, res: Response, next: NextFunction) => {
         const update = `UPDATE table_2
-        SET definition = '${req.body.definition}'
-        WHERE front = '${req.body.front}'`;
+        SET definition = '${req.body.definition}', front = '${req.body.front}'
+        WHERE card_id = '${req.body.id}'`;
 
         await query(update);
 

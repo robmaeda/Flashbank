@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { SingleCardProps } from "../util";
+import { FlashcardService, SingleCardProps } from "../util";
 import ListCard from "../Components/ListCard";
 
 interface FlashcardListProps {
@@ -17,18 +17,9 @@ const FlashcardList = ({ allCards, setAllCards }: FlashcardListProps) => {
     } = useForm();
 
     const saveCard = (data: Record<string, string>) => {
-        fetch("http://localhost:3000/api/card", {
-            method: "POST",
-            headers: {
-                "Content-Type": "Application/JSON",
-            },
-            body: JSON.stringify({
-                front: data.front,
-                definition: data.definition,
-            }),
-        })
-            .then((res) => res.json())
-            .then(setAllCards);
+        FlashcardService.saveCard(data.front, data.definition).then(
+            (response) => setAllCards(response.data)
+        );
         reset();
     };
 
